@@ -1,14 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite";
 import alpinejs from '@astrojs/alpinejs';
+import tailwind from '@astrojs/tailwind'; // Importación correcta para Tailwind v3
 
-// https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
   integrations: [
+    tailwind(), // Integración oficial de Tailwind para Astro
     alpinejs()
   ]
 });

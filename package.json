@@ -8,11 +8,15 @@
     "preview": "astro build && astro preview",
     "astro": "astro"
   },
- "dependencies": {
+  "dependencies": {
     "@astrojs/alpinejs": "^0.4.5",
+    "@astrojs/react": "^4.2.7",
     "@astrojs/tailwind": "^6.0.2",
     "alpinejs": "^3.13.5",
     "astro": "^5.6.1",
+    "basiclightbox": "^5.0.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tailwindcss": "^3.4.1"
   }
 }

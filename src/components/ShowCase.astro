@@ -1,0 +1,140 @@
+---
+import ShowCase1 from "../assets/images/ShowCase/Showcase1.jpg";
+import ShowCase2 from "../assets/images/ShowCase/Showcase2.jpg";
+import ShowCase3 from "../assets/images/ShowCase/Showcase3.jpg";
+import Image from "astro/components/Image.astro";
+import type { ImageMetadata } from "astro";
+
+const ShowCases = [
+  {
+    id: 1,
+    image: ShowCase1 as ImageMetadata,
+    alt: "Showcase 1",
+    title: "The Very Hungry Caterpillar",
+    subTitle: "By Eric Carle",
+    description:
+      "This set supports counting, days of the week, sequencing, and life cycle learning. Children love using the flannel pieces to 'feed' the caterpillar and watch him grow!",
+  },
+  {
+    id: 2,
+    image: ShowCase2 as ImageMetadata,
+    alt: "Showcase 2",
+    title: "Brown Bear, Brown Bear, What do you see?",
+    subTitle: "By Bill Martin jr. and Eric Carle",
+    description:
+      "Children build color recognition, sequencing and language skills as they retell the story using soft, colorfult felt animals. Perfect for circle time or bilingual learning",
+  },
+  {
+    id: 3,
+    image: ShowCase3 as ImageMetadata,
+    alt: "Showcase 3",
+    title: "One is a piñata: A book of Numbers",
+    subTitle: "By Roseanne Greenfield Thong, Illustrated by Johnn Parra",
+    description:
+      "Instead of flannel, this set includes hand-drawn character cards from the story and a paper piñata for children to fill as they count. This interactive activity promotes number recognition, bilingual vocabulary, and cultural appreciationwhile engaging fine motor skills through play. ",
+  },
+];
+---
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"
+  ></script>
+</head>
+
+<section id="showcase" class="section bg-gray-50 dark:bg-gray-800/50">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-24">
+      <span
+        class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4"
+      >
+        ShowCase
+      </span>
+      <h2 class="mb-6 text-4xl font-bold text-gray-900 dark:text-white">
+        Material interactivo para hacer tus clases más dinámicas
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300">
+        Explorá recursos listos para usar que te ahorran tiempo y captan la
+        atención de tus estudiantes. ¡Probados por docentes como vos!
+      </p>
+    </div>
+    <div class="space-y-32">
+      {
+        ShowCases.map(({ id, image, alt, title, subTitle, description }) => (
+          <div class={`grid sm:grid-cols-2 gap-16 items-center ${id === 2 ? 'sm:flex-row-reverse' : ''}`}>
+            {id === 2 ? (
+              <>
+                <div class="p-6">
+                  <h3 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h3>
+                  <p class="text-xl text-gray-600 font-bold dark:text-gray-300 mb-6">{subTitle}</p>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">{description}</p>
+                </div>
+                <div class="p-6">
+                  <button
+                    class="showcase-item w-full rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-xl"
+                    data-lightbox="basicLightbox"
+                    data-src={image.src}
+                    data-alt={alt}
+                  >
+                    <Image
+                      src={image}
+                      alt={alt}
+                      class="w-full h-full object-cover max-w-[700px] max-h-[500px]"
+                      loading="lazy"
+                      width={800}
+                      height={400}
+                    />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div class="p-6">
+                  <button
+                    class="showcase-item w-full rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-xl"
+                    data-lightbox="basicLightbox"
+                    data-src={image.src}
+                    data-alt={alt}
+                  >
+                    <Image
+                      src={image}
+                      alt={alt}
+                      class="w-full h-full object-cover max-w-[700px] max-h-[500px]"
+                      loading="lazy"
+                      width={800}
+                      height={400}
+                    />
+                  </button>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h3>
+                  <p class="text-xl text-gray-600 font-bold dark:text-gray-300 mb-6">{subTitle}</p>
+                  <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">{description}</p>
+                </div>
+              </>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  declare const basicLightbox: any;
+
+  document.querySelectorAll(".showcase-item").forEach((button) => {
+    button.addEventListener("click", () => {
+      const src = button.getAttribute("data-src");
+      const alt = button.getAttribute("data-alt");
+      const lightbox = basicLightbox.create(`
+        <img src="${src}" alt="${alt}" style="max-width: 70%; max-height: 70vh;" />
+      `);
+      lightbox.show();
+    });
+  });
+</script>

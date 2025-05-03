@@ -5,46 +5,99 @@ import Footer from '../components/Footer.astro';
 import HeroSection from '../components/HeroSection.astro';
 ---
 
-<Layout title="About Our Company - Sassify">
+<Layout title="About Me - Early Childhood Educator & Creator">
   <Header />
   <main>
     <HeroSection 
-      title="About Sassify" 
-      highlightText="Sassify"
-      description="We're on a mission to empower businesses with innovative SaaS solutions."
+      title="About Me:" 
+      highlightText=" Early Childhood Educator & Creator"
+      description="Passionate about bilingual learning, creativity, and cultural storytelling."
     />
     
     <section class="py-16 bg-white dark:bg-gray-800">
       <div class="container-custom">
-        <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
-          <div>
-            <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
-              Our Story
-            </span>
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">From Startup to Industry Leader</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Founded in 2015, Sassify began with a simple idea: to make powerful SaaS tools accessible to businesses of all sizes. What started as a small team of three passionate developers has grown into a global company serving thousands of customers worldwide.
-            </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Our journey hasn't always been easy, but our commitment to innovation, quality, and customer success has remained unwavering. Today, we're proud to be recognized as a leader in the SaaS industry, helping businesses transform their operations and achieve remarkable results.
-            </p>
-            <p class="text-gray-600 dark:text-gray-300">
-              As we continue to grow, we remain dedicated to our core mission: empowering businesses with the tools they need to succeed in the digital age.
-            </p>
-          </div>
-          <div class="rounded-lg overflow-hidden shadow-xl">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Sassify Team" class="w-full h-auto" />
-          </div>
-        </div>
+        <div 
+  x-data="{ 
+    items: [false, false, false, false, false], 
+    init() {
+      const startAnimation = () => {
+        const startDelay = 300;
+        const staggerDelay = 300;
+        
+        this.items.forEach((_, index) => {
+          setTimeout(() => {
+            this.items[index] = true;
+          }, startDelay + (index * staggerDelay));
+        });
+      };
+      
+      // Start animation after component is mounted
+      setTimeout(startAnimation, 100);
+      
+      // Also trigger animation when element enters viewport
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      }, { threshold: 0.2 });
+      
+      observer.observe(this.$el);
+    }
+  }"
+  class="py-6 grid md:grid-cols-2 gap-12 items-center mb-24"
+>
+  <div>
+    <span 
+    x-bind:class="{'opacity-100 transform translate-y-0': items[0], 'opacity-0 transform translate-y-8': !items[0]}"
+    class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4 transition-all duration-700 ease-out"
+  >
+    My Journey
+  </span>
+  
+  <h2 
+    x-bind:class="{'opacity-100 transform translate-y-0': items[1], 'opacity-0 transform translate-y-8': !items[1]}"
+    class="text-3xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-700 ease-out"
+  >
+    From Student to Educator
+  </h2>
+    <p 
+    x-bind:class="{'opacity-100 transform translate-y-0': items[2], 'opacity-0 transform translate-y-8': !items[2]}"
+    class="text-gray-600 dark:text-gray-300 mb-4 transition-all duration-700 ease-out"
+  >
+    As an early childhood studies student, I've dedicated myself to creating joyful learning experiences for young children. Through my senior project, I've designed over 40 hours of bilingual literacy materials, crafted engaging flannel story sets, and developed family engagement activities that celebrate cultural diversity.
+  </p>
+  
+  <p 
+    x-bind:class="{'opacity-100 transform translate-y-0': items[3], 'opacity-0 transform translate-y-8': !items[3]}"
+    class="text-gray-600 dark:text-gray-300 mb-4 transition-all duration-700 ease-out"
+  >
+    My passion for education goes beyond the classroom. I believe in creating resources that bridge the gap between home and school, making learning accessible and enjoyable for every child, regardless of their background or language.
+  </p>
+  
+  <p 
+    x-bind:class="{'opacity-100 transform translate-y-0': items[4], 'opacity-0 transform translate-y-8': !items[4]}"
+    class="text-gray-600 dark:text-gray-300 transition-all duration-700 ease-out"
+  >
+    Currently pursuing my Bachelor of Arts in Integrated Studies and Early Childhood Studies (Graduating May 2025), I'm excited to continue growing as an educator and creator.
+  </p>
+
+  </div>
+  
+  
+  <div class="rounded-lg overflow-hidden shadow-xl">
+    <img src="/early-childhood.png" alt="Early Childhood Education" class="w-full h-auto" />
+  </div>
+</div>
         
         <div class="mb-24">
           <div class="text-center mb-12">
             <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
-              Our Values
+              My Teaching Philosophy
             </span>
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">What We Stand For</h2>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Learning Through Play & Culture</h2>
             <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our values guide everything we do, from how we build our products to how we interact with our customers and each other.
+              I believe in creating learning experiences that are as joyful as they are educational.
             </p>
           </div>
           
@@ -52,94 +105,63 @@ import HeroSection from '../components/HeroSection.astro';
             <div class="card p-6 border border-gray-200 dark:border-gray-700">
               <div class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4">
                 <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Trust & Transparency</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bilingual Learning</h3>
               <p class="text-gray-600 dark:text-gray-300">
-                We believe in building trust through transparency. We're open about our processes, pricing, and policies, and we always strive to do what's right for our customers.
+                Celebrating children's languages and identities through engaging bilingual resources that make learning fun and accessible.
               </p>
             </div>
             
             <div class="card p-6 border border-gray-200 dark:border-gray-700">
               <div class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4">
                 <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Innovation & Excellence</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Play-Based Learning</h3>
               <p class="text-gray-600 dark:text-gray-300">
-                We're constantly pushing the boundaries of what's possible, seeking new ways to solve complex problems and deliver exceptional value to our customers.
+                Creating hands-on, playful experiences that spark curiosity and make learning an adventure for young minds.
               </p>
             </div>
             
             <div class="card p-6 border border-gray-200 dark:border-gray-700">
               <div class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4">
                 <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Customer Success</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Cultural Storytelling</h3>
               <p class="text-gray-600 dark:text-gray-300">
-                Our customers' success is our success. We're committed to providing the support, resources, and tools our customers need to achieve their goals.
+                Weaving cultural narratives into learning materials to create inclusive and meaningful educational experiences.
               </p>
             </div>
           </div>
         </div>
         
-        <div class="mb-24">
-          <div class="text-center mb-12">
-            <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
-              Leadership Team
-            </span>
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Meet Our Leaders</h2>
-            <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our diverse team of leaders brings decades of experience and a shared passion for innovation.
-            </p>
-          </div>
-          
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="w-full h-full object-cover" />
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">Michael Chen</h3>
-              <p class="text-primary-600 dark:text-primary-400 mb-2">CEO & Co-Founder</p>
-              <p class="text-gray-600 dark:text-gray-300 text-sm">
-                With over 15 years of experience in the tech industry, Michael leads our company with vision and passion.
-              </p>
-            </div>
-            
-            <div class="text-center">
-              <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="w-full h-full object-cover" />
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">Sarah Johnson</h3>
-              <p class="text-primary-600 dark:text-primary-400 mb-2">CTO & Co-Founder</p>
-              <p class="text-gray-600 dark:text-gray-300 text-sm">
-                Sarah's technical expertise and innovative thinking drive our product development and technology strategy.
-              </p>
-            </div>
-            
-            <div class="text-center">
-              <div class="rounded-full overflow-hidden w-32 h-32 mx-auto mb-4">
-                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="David Rodriguez" class="w-full h-full object-cover" />
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">David Rodriguez</h3>
-              <p class="text-primary-600 dark:text-primary-400 mb-2">COO</p>
-              <p class="text-gray-600 dark:text-gray-300 text-sm">
-                David ensures our operations run smoothly and efficiently, enabling us to deliver exceptional value to our customers.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="text-center">
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Join Our Team</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            We're always looking for talented individuals who share our passion for innovation and excellence. Check out our current openings and join us on our mission.
+        <div class="text-center bg-gray-50 dark:bg-gray-700 p-8 rounded-lg">
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">My Resources</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4 max-w-2xl mx-auto">
+            All resources are lovingly crafted for single-classroom or home use. Each material is designed with care, creativity, and a deep respect for the powerful role families and educators play in a child's development.
           </p>
-          <a href="/career" class="btn-primary">View Open Positions</a>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+            target="_blank"
+            href="https://www.teacherspayteachers.com/store/mi-rinconcito-creativo"
+              class="btn-primary whitespace-nowrap"
+            >
+              explore materials
+            </a>
+            <a 
+            href="/contact"
+              class="btn-primary whitespace-nowrap"
+            >
+              Contact me
+          </a>
+          </div>
+          
         </div>
       </div>
     </section>

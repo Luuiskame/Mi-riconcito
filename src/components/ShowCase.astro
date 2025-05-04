@@ -65,35 +65,35 @@ const ShowCases = [
     <div class="space-y-32">
       {
         ShowCases.map(({ id, image, alt, title, subTitle, description }) => (
-          <div class={`grid sm:grid-cols-2 gap-16 items-center ${id === 2 ? 'sm:flex-row-reverse' : ''}`}>
+          <div class={`grid sm:grid-cols-2 gap-3 lg:gap-16 items-center`}>
             {id === 2 ? (
               <>
-                <div class="p-6">
+                <div class="md:order-2">
+                  <button
+                    class="showcase-item w-full rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-xl"
+                    data-lightbox="basicLightbox"
+                    data-src={image.src}
+                    data-alt={alt}
+                  >
+                    <Image
+                      src={image}
+                      alt={alt}
+                      class="w-full h-full object-cover max-w-[700px] max-h-[500px]"
+                      loading="lazy"
+                      width={800}
+                      height={400}
+                    />
+                  </button>
+                </div>
+                <div class="md:order-1">
                   <h3 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h3>
                   <p class="text-xl text-gray-600 font-bold dark:text-gray-300 mb-6">{subTitle}</p>
                   <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">{description}</p>
                 </div>
-                <div class="p-6">
-                  <button
-                    class="showcase-item w-full rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-xl"
-                    data-lightbox="basicLightbox"
-                    data-src={image.src}
-                    data-alt={alt}
-                  >
-                    <Image
-                      src={image}
-                      alt={alt}
-                      class="w-full h-full object-cover max-w-[700px] max-h-[500px]"
-                      loading="lazy"
-                      width={800}
-                      height={400}
-                    />
-                  </button>
-                </div>
               </>
             ) : (
               <>
-                <div class="p-6">
+                <div class="">
                   <button
                     class="showcase-item w-full rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-xl"
                     data-lightbox="basicLightbox"
@@ -110,7 +110,7 @@ const ShowCases = [
                     />
                   </button>
                 </div>
-                <div class="p-6">
+                <div class="">
                   <h3 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h3>
                   <p class="text-xl text-gray-600 font-bold dark:text-gray-300 mb-6">{subTitle}</p>
                   <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">{description}</p>

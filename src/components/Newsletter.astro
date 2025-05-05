@@ -1,13 +1,24 @@
 ---
+import type { LanguageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+
+
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof LanguageList
+);
+
 ---
 <section id="signup" class="section">
   <div class="container-custom max-w-4xl">
     <div class="card p-8 md:p-12 border border-gray-200 dark:border-gray-700">
       <div class="text-center mb-8">
-        <h2 class="mb-4 text-gray-900 dark:text-white">Want to collaborate or browse more?</h2>
+        <h2 class="mb-4 text-gray-900 dark:text-white">{translateLabels('newsletterTitle')}</h2>
 
         <p class="mb-8 text-gray-600 dark:text-gray-300">
-          Explore our bilingual teaching materials on Teachers Pay Teachers or get in touch for custom requests and ideas.
+          {translateLabels('newsletterDescription')}
         </p>
       </div>
       
@@ -19,13 +30,13 @@
             href="https://www.teacherspayteachers.com/store/mi-rinconcito-creativo"
               class="btn-primary whitespace-nowrap"
             >
-              explore materials
+              {translateLabels('newsletterExplore')}
             </a>
             <a 
             href="/contact"
               class="btn-primary whitespace-nowrap"
             >
-              Contact me
+              {translateLabels('newsletterContact')}
           </a>
           </div>
         </div>

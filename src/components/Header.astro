@@ -1,4 +1,13 @@
 ---
+import { labels, LanguageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof LanguageList
+);
+
+
 const allPages = [
   { text: "Home", url: "/" },
   // { text: "Features", url: "/features" },
@@ -54,11 +63,9 @@ const allPages = [
     </a>
     
     <nav class="hidden md:flex items-center space-x-8">
-      <a href="/" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">Home</a>
-      <!-- <a href="/features" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">Features</a> -->
-      <a href="/company" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">About me</a>
-      <!-- <a href="/blog" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">Blog</a> -->
-      <a href="/contact" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">Contact</a>
+      <a href={`/${currentLang}/`} class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">{translateLabels('headerHome')}</a>
+      <a href={`/${currentLang}/company`} class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">{translateLabels('headerAbout')}</a>
+      <a href={`/${currentLang}/contact`} class="text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 font-medium transition-colors">{translateLabels('headerContact')}</a>
       
       <!-- All Pages Dropdown -->
       <!-- <div x-data="{ open: false }" class="relative">
@@ -109,8 +116,16 @@ const allPages = [
         </svg>
       </button>
       
-      <a href="#signup" class="hidden sm:inline-flex btn-primary">Get Started</a>
-      
+      {/*cambiar de idioma */}
+      <select onchange="window.location.href = '/' + this.value" class="hidden sm:inline-flex btn-primary mx-2">
+        {
+          Object.entries(LanguageList).map(([key, label]) => (
+            <option class="rounden-md" value={key} selected={key === currentLang}>
+              {label}
+            </option>
+          ))
+        }
+      </select>
       <!-- Mobile Menu Button and Dropdown -->
       <div x-data="{ open: false, showAllPages: false }">
         <button 
@@ -137,10 +152,19 @@ const allPages = [
           class="absolute top-16 right-4 w-48 py-2 bg-white dark:bg-secondary-900 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden"
           x-cloak
         >
-        <a href="/" class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">Home</a>
-          <!-- <a href="/features" class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">Features</a> -->
-          <a href="/company" class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">About me</a>
-          <a href="/contact" class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">Contact</a>
+        <a href={`/${currentLang}/`} class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">{translateLabels('headerHome')}</a>
+          <a href={`/${currentLang}/company`} class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">{translateLabels('headerAbout')}</a>
+          <a href={`/${currentLang}/contact`} class="block px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800">{translateLabels('headerContact')}</a>
+
+          <select onchange="window.location.href = '/' + this.value" class="inline-flex sm:hidden btn-primary mx-2">
+            {
+              Object.entries(LanguageList).map(([key, label]) => (
+                <option class="rounden-md" value={key} selected={key === currentLang}>
+                  {label}
+                </option>
+              ))
+            }
+          </select>
           
           <!-- Mobile All Pages Dropdown -->
           <!-- <button 

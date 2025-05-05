@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import ContactForm from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import ContactForm from '../../../components/Contact.astro';
+import Footer from '../../../components/Footer.astro';
 import Image from 'astro/components/Image.astro';
 ---
 <Layout title="Contact Us - Sassify">
@@ -19,9 +19,9 @@ import Image from 'astro/components/Image.astro';
       <div class="absolute inset-0 bg-black/50"><!-- Dark overlay for better text readability --></div>
       <div class="container-custom relative h-full flex items-center">
         <div class="space-y-6 slide-up max-w-xl">
-          <h1 class="text-white">Get in Touch</h1>
+          <h1 class="text-white">Ponte en contacto</h1>
           <p class="text-gray-100">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Nos encantaría saber de ti. Envíenos un mensaje y le responderemos lo antes posible.
           </p>
         </div>
       </div>
@@ -166,7 +166,7 @@ import Image from 'astro/components/Image.astro';
     
     socialIcons.forEach((icon) => {
       const delay = icon.getAttribute('data-delay');
-      icon.style.animationDelay = `${delay}ms`;
+      (icon as HTMLElement).style.animationDelay = `${delay}ms`;
     });
   });
 </script>

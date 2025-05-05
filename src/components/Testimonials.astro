@@ -1,30 +1,39 @@
 ---
+import type { LanguageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof LanguageList
+);
+
+
 const testimonials = [
   {
-    content:
-      "Los materiales son hermosos, prácticos y fáciles de usar. Mis alumnos disfrutan mucho las historias con fieltro y han mejorado su vocabulario en ambos idiomas.",
+    content: translateLabels('testimonialMarianaContent'),
     author: "Mariana López",
-    position: "Docente de Nivel Inicial",
-    company: "Jardín Arcoíris",
+    position: translateLabels('testimonialMarianaPosition'),
+    company: translateLabels('testimonialMarianaCompany'),
     avatar: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
-    content:
-      "Encontré justo lo que buscaba para trabajar de forma más lúdica y culturalmente relevante con mis chicos. ¡Me encanta la variedad de actividades!",
+    content: translateLabels('testimonialCarlosContent'),
     author: "Carlos Ramírez",
-    position: "Maestro de Preescolar",
-    company: "Escuela Infantil Manitos",
+    position: translateLabels('testimonialCarlosPosition'),
+    company: translateLabels('testimonialCarlosCompany'),
     avatar: "https://randomuser.me/api/portraits/men/51.jpg",
   },
   {
-    content:
-      "Recomiendo muchísimo esta página a otras maestras. Poder acceder a recursos gratuitos y ver ejemplos reales me ayudó a renovar mis propuestas.",
+    content: translateLabels('testimonialLuciaContent'),
     author: "Lucía Torres",
-    position: "Educadora Infantil",
-    company: "Pequeños Exploradores",
+    position: translateLabels('testimonialLuciaPosition'),
+    company: translateLabels('testimonialLuciaCompany'),
     avatar: "https://randomuser.me/api/portraits/women/68.jpg",
   },
 ];
+
+
 
 ---
 
@@ -32,11 +41,11 @@ const testimonials = [
   <div class="container-custom">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <span class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4">
-        Customer Stories
+       {translateLabels('testimonialsTile')}
       </span>
-      <h2 class="mb-6 text-gray-900 dark:text-white">What Our Clients Say</h2>
+      <h2 class="mb-6 text-gray-900 dark:text-white">{translateLabels('testimonialsTitle')}</h2>
       <p class="text-gray-600 dark:text-gray-300">
-        Don't just take our word for it. Here's what our customers have to say about their experience with our platform.
+        {translateLabels('testimonialsDescription')}
       </p>
     </div>
     

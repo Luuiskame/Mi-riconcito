@@ -1,6 +1,16 @@
 ---
 import ContactForm from "../React/ContactForm";
 
+import type { LanguageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+
+
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof LanguageList
+);
 
 ---
 
@@ -11,24 +21,23 @@ import ContactForm from "../React/ContactForm";
         <span
           class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4"
         >
-          Get In Touch
+          {translateLabels("contactTitle")}
         </span>
         <h2 class="mb-6 text-gray-900 dark:text-white">
-          We'd Love to Hear From You
+          {translateLabels("contactsubtitle")}
         </h2>
         <p class="text-gray-600 dark:text-gray-300 mb-8">
-          Have questions about our platform or need help getting started? Our
-          team is here to assist you every step of the way.
+          {translateLabels("contactDescription")}
         </p>
       </div>
 
       <div class="slide-up" style="animation-delay: 150ms">
         <div class="card p-6 border border-gray-200 dark:border-gray-700">
           <h3 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white">
-            Send Us a Message
+            {translateLabels("contactSend")}
           </h3>
 
-        <ContactForm  client:load/>
+        <ContactForm  client:load lang={currentLang} />
         </div>
       </div>
     </div>

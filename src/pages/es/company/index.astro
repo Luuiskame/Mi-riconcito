@@ -1,0 +1,237 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import HeroSection from "../../../components/HeroSection.astro";
+---
+
+<Layout title="Sobre Mi - Educadora infantil y creadora">
+  <Header />
+  <main>
+    <HeroSection
+      title="Sobre Mi:"
+      highlightText=" Educadora infantil y creadora"
+      description="Apasionada del aprendizaje bilingüe, la creatividad y la narración cultural."
+    />
+
+    <section class="py-16 bg-white dark:bg-gray-800">
+      <div class="container-custom">
+        <div
+          x-data="{ 
+    items: [false, false, false, false, false], 
+    init() {
+      const startAnimation = () => {
+        const startDelay = 300;
+        const staggerDelay = 300;
+        
+        this.items.forEach((_, index) => {
+          setTimeout(() => {
+            this.items[index] = true;
+          }, startDelay + (index * staggerDelay));
+        });
+      };
+      
+      // Start animation after component is mounted
+      setTimeout(startAnimation, 100);
+      
+      // Also trigger animation when element enters viewport
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      }, { threshold: 0.2 });
+      
+      observer.observe(this.$el);
+    }
+  }"
+          class="py-6 grid md:grid-cols-2 gap-12 items-center mb-24"
+        >
+          <div>
+            <span
+              x-bind:class="{'opacity-100 transform translate-y-0': items[0], 'opacity-0 transform translate-y-8': !items[0]}"
+              class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4 transition-all duration-700 ease-out"
+            >
+              Mi viaje
+            </span>
+
+            <h2
+              x-bind:class="{'opacity-100 transform translate-y-0': items[1], 'opacity-0 transform translate-y-8': !items[1]}"
+              class="text-3xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-700 ease-out"
+            >
+              Desde estudiante a educadora
+            </h2>
+            <p
+              x-bind:class="{'opacity-100 transform translate-y-0': items[2], 'opacity-0 transform translate-y-8': !items[2]}"
+              class="text-gray-600 dark:text-gray-300 mb-4 transition-all duration-700 ease-out"
+            >
+              Como estudiante de educación infantil, me he dedicado a crear
+              experiencias de aprendizaje divertidas para los niños pequeños. A
+              través de mi proyecto de fin de carrera, he diseñado más de 40
+              horas de materiales de alfabetización bilingües, elaborado
+              atractivos juegos de cuentos de franela y desarrollado actividades
+              de participación familiar que celebran la diversidad cultural.
+            </p>
+
+            <p
+              x-bind:class="{'opacity-100 transform translate-y-0': items[3], 'opacity-0 transform translate-y-8': !items[3]}"
+              class="text-gray-600 dark:text-gray-300 mb-4 transition-all duration-700 ease-out"
+            >
+              Mi pasión por la educación va más allá de las aulas. Creo en
+              creando recursos que tiendan puentes entre el hogar y la escuela,
+              haciendo que el aprendizaje sea accesible y agradable para todos
+              los niños, independientemente de su origen o idioma.
+            </p>
+
+            <p
+              x-bind:class="{'opacity-100 transform translate-y-0': items[4], 'opacity-0 transform translate-y-8': !items[4]}"
+              class="text-gray-600 dark:text-gray-300 transition-all duration-700 ease-out"
+            >
+              Actualmente cursando mi Licenciatura en Estudios Integrados y
+              Estudios de la Primera Infancia (Graduada en Mayo 2025), estoy
+              emocionada de seguir creciendo como educadora y creadora.
+            </p>
+          </div>
+
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img
+              src="/early-childhood.png"
+              alt="Early Childhood Education"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <div class="mb-24">
+          <div class="text-center mb-12">
+            <span
+              class="inline-block px-4 py-1 rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 font-medium text-sm mb-4"
+            >
+              Mi filosofía de enseñanza
+            </span>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Aprender a través del juego y la cultura
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Creo en la creación de experiencias de aprendizaje que sean tan
+              alegres como educativas.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="card p-6 border border-gray-200 dark:border-gray-700">
+              <div
+                class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
+              >
+                Aprendizaje bilingüe
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Celebración de las lenguas e identidades de los niños a través de atractivos recursos bilingües que hacen que el aprendizajesea divertido y accesible.
+              </p>
+            </div>
+
+            <div class="card p-6 border border-gray-200 dark:border-gray-700">
+              <div
+                class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
+              >
+                Aprendizaje basado en juegos
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Crear experiencias prácticas y lúdicas que despierten la curiosidad y conviertan el aprendizaje en una aventura para las mentes jóvenes.
+              </p>
+            </div>
+
+            <div class="card p-6 border border-gray-200 dark:border-gray-700">
+              <div
+                class="rounded-full bg-primary-100 dark:bg-primary-900 p-3 w-12 h-12 flex items-center justify-center mb-4"
+              >
+                <svg
+                  class="w-6 h-6 text-primary-600 dark:text-primary-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
+              >
+              Relatos culturales
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Entretejer narrativas culturales en los materiales didácticos para crear experiencias educativas integradoras y significativas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center bg-gray-50 dark:bg-gray-700 p-8 rounded-lg">
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            Mis recursos
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4 max-w-2xl mx-auto">
+            Todos los recursos han sido cuidadosamente elaborados para su uso en el aula o en casa. Cada material se ha diseñado con cuidado, creatividad y un profundo respeto por el importante papel que desempeñan las familias y los educadores en el desarrollo del niño.
+          </p>
+
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <a
+              target="_blank"
+              href="https://www.teacherspayteachers.com/store/mi-rinconcito-creativo"
+              class="btn-primary whitespace-nowrap"
+            >
+            Explorar materiales
+            </a>
+            <a href="/contact" class="btn-primary whitespace-nowrap">
+              Contacto
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,14 +1,23 @@
 ---
+import type { LanguageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
 const currentYear = new Date().getFullYear();
+
+
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof LanguageList
+);
 
 const footerLinks = [
   {
-    title: "Home",
+    title: translateLabels('footerHome'),
     links: [
-      { text: "Home", url: "/" },
-      { text: "About me", url: "/company" },
-      // { text: "Pricing", url: "/pricing" },
-      { text: "Contact", url: "/contact" }
+      { text: translateLabels('footerHome'), url: "/" },
+      { text: translateLabels('footerAbout'), url: "/company" },
+      { text: translateLabels('footerContact'), url: "/contact" }
     ]
   },
   // {
@@ -54,7 +63,7 @@ const footerLinks = [
           <span class="ml-2 text-xl font-display font-semibold text-white">Mi Rinconcito</span>
         </a>
         <p class="text-gray-400 mb-6 max-w-md">
-          Handcrafted resources to support early literacy, creativity, and culturally responsive teaching, feel free to follow me on social media or contact me at anytime
+          {translateLabels('footerDescription')}
         </p>
         <!-- <div class="flex space-x-4">
           <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors" aria-label="Twitter">
